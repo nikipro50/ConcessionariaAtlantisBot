@@ -225,7 +225,7 @@ export default class LeaveCallback {
                 const employee = await employees.getEmployeeByNickname(leave.minecraft_nickname);
 
                 if (action === "approve") await leavesRepo.approveLeave(leaveId);
-                else await leavesRepo.finishLeave(leave.minecraft_nickname);
+                else await leavesRepo.finishLeave(leave.id);
 
                 await bot.editMessageReplyMarkup(
                     { inline_keyboard: [[{ text: action === "approve" ? "✅ • Approvato" : "❌ • Rifiutato", callback_data: "done" }]] },
@@ -235,7 +235,7 @@ export default class LeaveCallback {
                 if (employee?.telegram_id)
                     await bot.sendMessage(
                         Number(employee.telegram_id),
-                        `<b>❄️ • Congedo ${action === "approve" ? "approvato" : "rifiutato"}</b>\n📅 Dal <b>${DateFormatter.format(leave.start_date)}</b>\n📅 Al <b>${DateFormatter.format(leave.end_date)}</b>`,
+                        `<b>❄️ • Congedo ${action === "approve" ? "approvato" : "rifiutato"}</b>\n📅 Dal <b>${DateFormatter.format(new Date(Number(leave.start_date)))}</b>\n📅 Al <b>${DateFormatter.format(new Date(Number(leave.end_date)))}</b>`,
                         { parse_mode: "HTML" }
                     );
 
@@ -260,8 +260,8 @@ export default class LeaveCallback {
                     return await bot.answerCallbackQuery(query.id, { text: "❌ Congedo non trovato!", show_alert: true });
 
                 const leave = leaves[index];
-                const start = new Date(leave.start_date);
-                const end = new Date(leave.end_date);
+                const start = new Date(Number(leave.start_date));
+                const end = new Date(Number(leave.end_date));
 
                 const keyboard = [
                     [
@@ -293,7 +293,7 @@ export default class LeaveCallback {
                 const leave = leaves[index];
 
                 if (action === "delete") {
-                    await leavesRepo.finishLeave(leave.minecraft_nickname);
+                    await leavesRepo.finishLeave(leave.id);
                     await bot.editMessageText(`✅ Congedo #${index + 1} di ${nickname} eliminato!`, { chat_id: query.message.chat.id, message_id: query.message.message_id });
                 } else if (action === "cancel") {
                     await bot.editMessageText(`❌ Azione annullata per il congedo #${index + 1} di ${nickname}`, { chat_id: query.message.chat.id, message_id: query.message.message_id });

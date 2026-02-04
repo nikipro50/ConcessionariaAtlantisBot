@@ -44,7 +44,7 @@ export default class GerarchiaComamnd {
             message += "\n";
         }
 
-        message += "\n<b>✍️ ʟᴀ ᴅɪʀᴇᴢɪᴏɴᴇ</b>\nWisy Van Lysk <i><s>(Moldina)</s></i>\nEsa De Argentis <i><s>(2lvel)</s></i>";
+        message += "\n<b>✍️ ʟᴀ ᴅɪʀᴇᴢɪᴏɴᴇ</b>\nWisy Van Lysk <i><s>(Moldina)</s></i>\nEsa De Argentis <i><s>(Hitnove)</s></i>";
 
 
         this.bot.sendMessage(msg.chat.id, message.replace("$$counter", String(counter)), { parse_mode: 'HTML', disable_web_page_preview: true });

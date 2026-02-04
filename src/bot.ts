@@ -12,6 +12,7 @@ import CongediAttiviCommand from "./commands/CongediAttiviCommand";
 import CongedoListaCommand from "./commands/CongedoListaCommand";
 import ListaCongediDipendenteCommand from "./commands/ListaCongediDipendenteCommand";
 import GestisciCongedoCommand from "./commands/GestisciCongedoCommand";
+import { startLeaveAutoFinishSchedular } from "./task/LeaveTask";
 
 dotenv.config();
 console.clear();
@@ -38,6 +39,8 @@ const bot: TelegramBot = new TelegramBot(process.env.BOT_TOKEN, { polling: true 
 
     // events
     new NewCallback(bot);
+
+    startLeaveAutoFinishSchedular(bot);
 
     bot.on('polling_error', (err) => console.error(err));
     console.log("Bot avviato con successo!");

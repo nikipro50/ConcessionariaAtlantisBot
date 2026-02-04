@@ -24,8 +24,8 @@ export default class ListaCongediDipendenteCommand {
 
             let text = `<b>📋 Lista congedi di: ${nickname}</b>\n\n`;
             for (const leave of leaves) {
-                const start = new Date(leave.start_date);
-                const end = new Date(leave.end_date);
+                const start = new Date(Number(leave.start_date));
+                const end = new Date(Number(leave.end_date));
                 const status = leave.status === "ACTIVE" ? "Attivo" : "Finito";
 
                 text += `📅 Dal: ${DateFormatter.format(start)}\n📅 Al: ${DateFormatter.format(end)}\n🟢 Stato: ${status}\n\n`;

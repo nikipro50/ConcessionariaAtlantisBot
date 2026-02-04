@@ -20,8 +20,8 @@ export default class CongediAttiviCommand {
 
             let text = "<b>📋 Lista Congedi Attivi (" + activeLeaves.length + ")</b>\n\n";
             for (const leave of activeLeaves) {
-                const start = new Date(leave.start_date);
-                const end = new Date(leave.end_date);
+                const start = new Date(Number(leave.start_date));
+                const end = new Date(Number(leave.end_date));
                 const now = new Date();
                 const daysLeft = Math.max(0, Math.floor((end.getTime() - now.getTime()) / (1000 * 60 * 60 * 24)) + 1);
 

@@ -3,6 +3,7 @@ import EmployeeRepository from "../database/repo/EmployeeRepository";
 export const SECONDARY_ROLES: string[] = [
     "CTV",
     "FORMATORE",
+    "RA"
 ];
 
 export const ROLES_ORDER: string[] = [
@@ -20,6 +21,7 @@ export const ROLES_ORDER: string[] = [
 
     "CTV",
     "FORMATORE",
+    "RA"
 ];
 
 export const ADMIN_ROLES = ["DIRETTORE", "VICE_DIRETTORE"];
@@ -38,7 +40,8 @@ export const ROLE_ICONS: Record<string, string> = {
 	STAGISTA: "🎓 Stagista",
 	
 	CTV: "🚗 CTV – Centro Tecnico Veicoli",
-	FORMATORE: "📚 Formatore"
+	FORMATORE: "📚 Formatore",
+    RA: "🚒 Responsabile Anti Incendio"
 }
 
 export const hasAdminRole = async (userId: number): Promise<boolean> => {
